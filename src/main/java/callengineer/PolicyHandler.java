@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.BeanUtils;
 
 @Service
 public class PolicyHandler{
@@ -26,8 +27,11 @@ public class PolicyHandler{
         
 
         // Sample Logic //
-        // EngineerManagement engineerManagement = new EngineerManagement();
-        // engineerManagementRepository.save(engineerManagement);
+        EngineerManagement engineerManagement = new EngineerManagement();
+        engineerManagement.setCallId(paymentApproved.getCallId());
+        engineerManagement.setStatus("1");
+        System.out.println("\n\n##### listener RequestInformationReceived : " + engineerManagement.toString() + "\n\n");
+        engineerManagementRepository.save(engineerManagement);
 
     }
 
