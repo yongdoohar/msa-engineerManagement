@@ -21,6 +21,8 @@ public class EngineerManagement  {
     @PostPersist
     public void onPostPersist(){
         BusinessTripStarted businessTripStarted = new BusinessTripStarted();
+        businessTripStarted.setCallId(this.getCallId());
+        businessTripStarted.setCallId(this.getStatus());
         BeanUtils.copyProperties(this, businessTripStarted);
         businessTripStarted.publishAfterCommit();
 
